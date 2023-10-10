@@ -10,20 +10,21 @@ jobs:
         with:
           fetch-depth: 0
       - uses: pguyot/arm-runner-action@v2
+        id: arm_runner_install
         with:
           base_image: raspios_lite:latest
           image_additional_mb: 4096
-          copy_artifact_path: '*'
+          optimize_image: yes
           commands: |
               sudo apt-get update
-              sudo apt install -y git
-              git clone https://github.com/kaack/elrs-joystick-control.git
-              cd elrs-joystick-control
               ./build-raspbian32-linux-armhf.sh
-              ldd elrs-joystick-control
+      - name: Compress the release image
+        run: |
+          mv ${{ steps.arm_runner_install.outputs.image }} release-raspios-arm32.img
+          sudo xz -T 0 -v release-raspios-arm32.img
       - name: Upload binary
         uses: actions/upload-artifact@v3
         with:
           name: release-raspios-arm32
-          path: "*.zip"
+          path: release-raspios-arm32.img.xz
           retention-days: 5
