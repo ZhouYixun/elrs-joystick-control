@@ -1,0 +1,25 @@
+name: ELRS Joystick Control (Linux/arm)
+on:
+  workflow_dispatch:
+jobs:
+  build-binary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: pguyot/arm-runner-action@v2
+        with:
+          base_image: raspios_lite:latest
+          commands: |
+              sudo apt-get update
+              git clone https://github.com/kaack/elrs-joystick-control.git
+              cd elrs-joystick-control
+              ./build-raspbian32-linux-armhf.sh
+      - name: Upload binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-linux-amd64
+          path: "*.zip"
+          retention-days: 5
