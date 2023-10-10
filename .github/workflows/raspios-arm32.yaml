@@ -14,17 +14,13 @@ jobs:
         with:
           base_image: raspios_lite:latest
           image_additional_mb: 4096
-          optimize_image: yes
+          copy_artifact_path: './*'
           commands: |
               sudo apt-get update
               ./build-raspbian32-linux-armhf.sh
-      - name: Compress the release image
-        run: |
-          mv ${{ steps.arm_runner_install.outputs.image }} release-raspios-arm32.img
-          sudo xz -T 0 -v release-raspios-arm32.img
       - name: Upload binary
         uses: actions/upload-artifact@v3
         with:
           name: release-raspios-arm32
-          path: release-raspios-arm32.img.xz
+          path: '*.zip'
           retention-days: 5
