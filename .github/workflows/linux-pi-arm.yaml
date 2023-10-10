@@ -19,6 +19,7 @@ jobs:
               git clone https://github.com/kaack/elrs-joystick-control.git
               cd elrs-joystick-control
               ./build-raspbian32-linux-armhf.sh
+              ldd elrs-joystick-control
       - name: Upload binary
         uses: actions/upload-artifact@v3
         with:
