@@ -1,4 +1,4 @@
-name: ELRS Joystick Control (Linux/arm)
+name: ELRS Joystick Control (raspios/arm32)
 on:
   workflow_dispatch:
 jobs:
