@@ -23,6 +23,6 @@ jobs:
       - name: Upload binary
         uses: actions/upload-artifact@v3
         with:
-          name: release-linux-amd64
-          path: "*.zip"
+          name: release-raspios-arm32
+          path: "elrs-joystick-control/*.zip"
           retention-days: 5
