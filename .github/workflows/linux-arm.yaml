@@ -14,7 +14,7 @@ jobs:
           base_image: raspios_lite:latest
           commands: |
               sudo apt-get update
-              echo Y | sudo apt install git
+              sudo apt install -y git
               git clone https://github.com/kaack/elrs-joystick-control.git
               cd elrs-joystick-control
               ./build-raspbian32-linux-armhf.sh
