@@ -13,7 +13,7 @@ jobs:
         with:
           base_image: raspios_lite:latest
           image_additional_mb: 4096
-          copy_artifact_path: /home/pi/elrs-joystick-control
+          copy_artifact_path: '*'
           commands: |
               sudo apt-get update
               sudo apt install -y git
