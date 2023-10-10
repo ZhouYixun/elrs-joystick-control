@@ -13,6 +13,7 @@ jobs:
         with:
           base_image: raspios_lite:latest
           image_additional_mb: 4096
+          copy_artifact_path: /home/pi/elrs-joystick-control
           commands: |
               sudo apt-get update
               sudo apt install -y git
@@ -24,5 +25,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: release-raspios-arm32
-          path: "elrs-joystick-control/*.zip"
+          path: "*.zip"
           retention-days: 5
