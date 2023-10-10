@@ -12,6 +12,7 @@ jobs:
       - uses: pguyot/arm-runner-action@v2
         with:
           base_image: raspios_lite:latest
+          image_additional_mb: 4096
           commands: |
               sudo apt-get update
               sudo apt install -y git
